@@ -19,7 +19,8 @@ jobs:
         with:
           path: ./.output/public
   # Deployment job
-  deploy:
+  # Deployment job
+deploy:
     # Add a dependency to the build job
     needs: build
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
@@ -33,6 +34,12 @@ jobs:
     # Specify runner + deployment step
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
+        with:
+          target: portfolio  # Specify the branch or folder to deploy to, if required
+          token: ${{ secrets.GITHUB_TOKEN }}  # Ensure you have a GITHUB_TOKEN secret defined
+  
