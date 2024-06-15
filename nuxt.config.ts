@@ -6,7 +6,7 @@ export default defineNuxtConfig({
 
   // Configuration pour le chemin du router
   router: {
-    base: "/portfolio/",
+    base: '/portfolio/',
   },
 
   // Modules de Nuxt
