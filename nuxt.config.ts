@@ -1,70 +1,58 @@
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
-import { defineNuxtConfig } from 'nuxt/config';
+import { defineNuxtConfig } from 'nuxt/config'
+
 export default defineNuxtConfig({
-  
-  // déplace les fichiers sources de la racine au dossier client
-  srcDir: 'portfolio/',
-  nitro: {
-    output: {
-      // placer la sortie statique dans le dossier ./public, 
-      // pour que GitLab pages fonctionnent normalement
-      // voir https://nitro.unjs.io/config#output
-      publicDir: "public",
-    },
-  },
-  dir: {
-    // pour éviter un conflit avec les pages GitLab, qui requièrent
-   // que la sortie de la construction soit dans le dossier ./public.
-   // voir https://nuxt.com/docs/api/nuxt-config#public
-   public: "static",
-   static: "static",
- },
-  app: {
-    head: {
-      htmlAttrs: {
-        lang: 'fr',
-      },
-      meta: [
-        {
-          name: 'format-detection',
-          content: 'telephone=no',
-        },
-        {
-          name: 'viewport',
-          content: 'width=device-width, initial-scale=1, shrink-to-fit=no',
-        },
-        {
-          name: 'theme-color',
-          content: '#000091',
-        },
-        {
-          name: 'robots',
-          content: 'noindex, nofollow',
-        },
-      ],
-    },
-  },
-  routeRules: {
-    // La page d'accueil est pré-rendue au moment du build
-    '/**': { prerender: true },
-  },
-  ignore: [
-    '**/*.test.*',
-    '**/*.spec.*',
-    '**/*.cy.*',
+  // Activer les outils de développement
+  devtools: { enabled: true },
+
+  // Mode de génération statique
+  target: "static",
+
+  // Configuration pour le chemin du router
+  router: {
+    base: '/portfolio/', },
+
+  // Modules de Nuxt.js
+  modules: [
+    "@nuxt/ui",
+    "@nuxtjs/tailwindcss",
+    "nuxt-icon"
   ],
-  runtimeConfig: {
-    // pour rendre les variables d'environnement disponibles dans le code
-    // cf. https://v3.nuxtjs.org/api/configuration/runtime-config
-    public: {
-      baseURL: process.env.BASE_URL,
-      apiURL: process.env.API_URL,
-    },
+
+  // Configuration de l'en-tête
+  head: {
+    title: "Ogtay Aliyev Portfolio",
+    meta: [
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { hid: "description", name: "description", content: "Description de votre portfolio" },  // Ajouter une description pertinente
+    ],
+    link: [
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },  // Adapter le chemin de l'icône
+    ],
   },
-  components: [
-    {
-      path: '~/components',
-      pathPrefix: false,
-    },
+
+  // Ajout de fichiers CSS globaux
+  css: [
+    "~/public/css/main.css"
   ],
+
+  // Liste des plugins à utiliser
+  plugins: [
+    // Ajouter vos plugins ici
+  ],
+
+  // Activer la prise en charge automatique des composants
+  components: true,
+
+  // Modules de build à utiliser
+  buildModules: [
+    // Module pour le support de TypeScript
+    "@nuxt/typescript-build",
+    
+    // Module pour la génération d'une version optimisée de Tailwind CSS (requis pour @nuxtjs/tailwindcss)
+    "@nuxtjs/tailwindcss"
+  ],
+
+  // Configuration de la build
+
 })
