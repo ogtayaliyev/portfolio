@@ -41,5 +41,5 @@ deploy:
         uses: actions/deploy-pages@v1
         with:
           target: portfolio  # Specify the branch or folder to deploy to, if required
-          token: ${{ secrets.GITHUB_TOKEN }}  # Ensure you have a GITHUB_TOKEN secret defined
+          token: ${{ secrets.GITHUB_TOKEN }}  # Ensure you have a GITHUB_TOKEN secret define
   
