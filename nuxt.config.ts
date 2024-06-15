@@ -1,36 +1,70 @@
-import { defineNuxtConfig } from 'nuxt/config'
-
+// https://v3.nuxtjs.org/api/configuration/nuxt.config
+import { defineNuxtConfig } from 'nuxt/config';
 export default defineNuxtConfig({
-  // Activer les outils de développement
-  devtools: { enabled: true },
-
-  // Mode de génération statique
-
-
-  // Modules de Nuxt.js
-  modules: [
-    "@nuxt/ui",
-    "@nuxtjs/tailwindcss",
-    "nuxt-icon"
+  
+  // déplace les fichiers sources de la racine au dossier client
+  srcDir: 'portfolio/',
+  nitro: {
+    output: {
+      // placer la sortie statique dans le dossier ./public, 
+      // pour que GitLab pages fonctionnent normalement
+      // voir https://nitro.unjs.io/config#output
+      publicDir: "public",
+    },
+  },
+  dir: {
+    // pour éviter un conflit avec les pages GitLab, qui requièrent
+   // que la sortie de la construction soit dans le dossier ./public.
+   // voir https://nuxt.com/docs/api/nuxt-config#public
+   public: "static",
+   static: "static",
+ },
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: 'fr',
+      },
+      meta: [
+        {
+          name: 'format-detection',
+          content: 'telephone=no',
+        },
+        {
+          name: 'viewport',
+          content: 'width=device-width, initial-scale=1, shrink-to-fit=no',
+        },
+        {
+          name: 'theme-color',
+          content: '#000091',
+        },
+        {
+          name: 'robots',
+          content: 'noindex, nofollow',
+        },
+      ],
+    },
+  },
+  routeRules: {
+    // La page d'accueil est pré-rendue au moment du build
+    '/**': { prerender: true },
+  },
+  ignore: [
+    '**/*.test.*',
+    '**/*.spec.*',
+    '**/*.cy.*',
   ],
-
-
-  // Ajout de fichiers CSS globaux
-  css: [
-    "~/public/css/main.css"
+  runtimeConfig: {
+    // pour rendre les variables d'environnement disponibles dans le code
+    // cf. https://v3.nuxtjs.org/api/configuration/runtime-config
+    public: {
+      baseURL: process.env.BASE_URL,
+      apiURL: process.env.API_URL,
+    },
+  },
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+    },
   ],
-
-  // Liste des plugins à utiliser
-  plugins: [
-    // Ajouter vos plugins ici
-  ],
-
-  // Activer la prise en charge automatique des composants
-  components: true,
-
-  // Modules de build à utiliser
-
-
-  // Configuration de la build
-
 })
