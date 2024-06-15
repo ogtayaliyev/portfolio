@@ -1,5 +1,7 @@
-import { defineNuxtConfig } from 'nuxt/config';
+import { defineNuxtConfig } from 'nuxt/config'
+
 export default defineNuxtConfig({
+  // Activer les outils de développement
   devtools: { enabled: true },
 
   // Mode de génération statique
@@ -7,31 +9,51 @@ export default defineNuxtConfig({
 
   // Configuration pour le chemin du router
   router: {
-    base: '/portfolio/',
+    base: '/portfolio/',  // Adapter selon le chemin de déploiement sur GitHub Pages ou autre
   },
 
-  // Modules de Nuxt
-  modules: ["@nuxt/ui", "@nuxtjs/tailwindcss", "nuxt-icon"],
+  // Modules de Nuxt.js
+  modules: [
+    "@nuxt/ui",
+    "@nuxtjs/tailwindcss",
+    "nuxt-icon"
+  ],
 
-  // Autres configurations de votre application Nuxt
+  // Configuration de l'en-tête
   head: {
     title: "Ogtay Aliyev Portfolio",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "" },
+      { hid: "description", name: "description", content: "Description de votre portfolio" },  // Ajouter une description pertinente
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    link: [
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },  // Adapter le chemin de l'icône
+    ],
   },
-  css: ["~/public/css/main.css"],
+
+  // Ajout de fichiers CSS globaux
+  css: [
+    "~/public/css/main.css"
+  ],
+
+  // Liste des plugins à utiliser
   plugins: [
-    // Ajoutez vos plugins ici
+    // Ajouter vos plugins ici
   ],
+
+  // Activer la prise en charge automatique des composants
   components: true,
+
+  // Modules de build à utiliser
   buildModules: [
-    // Ajoutez vos modules de build ici
+    // Module pour le support de TypeScript
+    "@nuxt/typescript-build",
+    
+    // Module pour la génération d'une version optimisée de Tailwind CSS (requis pour @nuxtjs/tailwindcss)
+    "@nuxtjs/tailwindcss"
   ],
-  build: {
-    // Ajoutez vos configurations de build ici
-  },
-});
+
+  // Configuration de la build
+
+})
