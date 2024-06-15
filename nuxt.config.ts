@@ -22,7 +22,7 @@ export default defineNuxtConfig({
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
-  css: ["@/public/css/main.css"],
+  css: ["~/public/css/main.css"],
   plugins: [
     // Ajoutez vos plugins ici
   ],
