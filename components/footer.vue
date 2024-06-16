@@ -3,7 +3,7 @@
       <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <div class="text-center md:text-left">
           <p>&copy; {{ currentYear }} My Company. All rights reserved.</p>
-          <p>Made with ♥ by <a href="https://yourwebsite.com" class="underline">Your Name</a></p>
+          <p>Made with ♥ by <a href="https://yourwebsite.com" class="underline">Ogtay Aliyev</a></p>
         </div>
         <div class="flex space-x-4 mt-4 md:mt-0">
         <a href="https://www.linkedin.com/in/ogtay-aliyev/" target="_blank" rel="noopener" aria-label="LinkedIn">
@@ -48,7 +48,7 @@
   }
 
   @media (max-width:767px) {
-   .container{padding-bottom: 3rem} ;
+   .container{padding-bottom: 4rem} ;
   }
   
   @media (min-width: 768px) {
